@@ -5,22 +5,8 @@ var morgan = require('morgan');
 var mysql = require('mysql');
 var users = require('./controllers/users'); 
 var bodyParser = require('body-parser');
-var connection = mysql.createConnection({
-  host     : config.database.host,
-  user     : config.database.user,
-  password : config.database.pass,
-  database : config.database.dbname,
-  port: config.database.port
-});
-
-	connection.connect(function(err){
-		if(!err) {
-		    console.log("Database is connected ... nn");    
-		} else {
-		    console.log("Error connecting database ... nn " + err);    
-		}
-	});
-
+var login = require('./controllers/login');
+var db = require('./db/db');
 	//use morgan to log at command line
 	app.use(morgan('combined')); //'combined' outputs the Apache style LOGs
 
@@ -29,6 +15,9 @@ var connection = mysql.createConnection({
 	app.use(bodyParser.urlencoded({extended: true}));               
 	app.use(bodyParser.text());                                    
 	app.use(bodyParser.json({ type: 'application/json'}));
+
+	app.route('/login')
+		.post(login.loginUser);
 
 
 	app.listen(8080);
