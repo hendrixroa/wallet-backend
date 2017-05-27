@@ -2,7 +2,7 @@
   "name": "wallet-backend",
   "version": "1.0.0",
   "description": "A project for management money for excellent users",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "mocha --timeout 10000"
   },
@@ -21,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/hendrixroa/wallet-backend/issues"
   },
-  "homepage": "https://github.com/hendrixroa/wallet-backend#readme"
+  "homepage": "https://github.com/hendrixroa/wallet-backend#readme",
+  "devDependencies": {
+    "config": "^1.26.1",
+    "express": "^4.15.3",
+    "mysql": "^2.13.0"
+  }
 }
