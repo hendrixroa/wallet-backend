@@ -19,6 +19,9 @@ var db = require('./db/db');
 	app.route('/login')
 		.post(login.loginUser);
 
+	app.route('/users/:id/wallet')
+		.get(users.getWalletByUserId);	
+
 
 	app.listen(8080);
 	console.log("Listening on port " + 8080);

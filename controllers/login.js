@@ -16,8 +16,8 @@ module.exports = {
 				);
 
 				var result = rows.find(function(user){
-								return user.username == req.body.username && user.password == sha1(req.body.password);
-							});
+					return user.username == req.body.username && user.password == sha1(req.body.password);
+				});
 
 				res.json({'id': result == undefined ? null : result.id});
 			}
