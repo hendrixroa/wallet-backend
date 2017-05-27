@@ -23,8 +23,9 @@
   },
   "homepage": "https://github.com/hendrixroa/wallet-backend#readme",
   "devDependencies": {
-    "config": "^1.26.1",
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "morgan": "^1.8.2",
     "mysql": "^2.13.0"
   }
 }
