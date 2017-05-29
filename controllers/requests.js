@@ -53,5 +53,30 @@ module.exports = {
 				}		
 			});
 		}
+	},
+	getRequestByIdUser: function(req, res){
+		connection.query(
+			'SELECT * FROM requests WHERE id_requester = ?', 
+			[req.params.id_requester],
+			function(err, resul_req, fields){
+				if(err != null){
+					console.log(err);
+					connection.end();
+				}else{
+					res.json({'requests':  resul_req.length > 0 ? resul_req : null }); 	
+				}		
+		});
+	},
+	getRequests: function(req, res){
+		connection.query(
+			'SELECT * FROM requests', 
+			function(err, resul_req, fields){
+				if(err != null){
+					console.log(err);
+					connection.end();
+				}else{
+					res.json({'requests':  resul_req.length > 0 ? resul_req : null }); 	
+				}		
+		});
 	}
 }
