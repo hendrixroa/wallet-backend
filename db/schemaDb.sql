@@ -40,7 +40,7 @@ CREATE TABLE requests (
 	message VARCHAR(150),
 	operation VARCHAR(20) NOT NULL,
 	quantity DOUBLE(10,2) NOT NULL,
-	id_admin_request int NOT NULL
+	id_admin_request int
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE users ADD PRIMARY KEY (id);
