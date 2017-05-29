@@ -3,9 +3,10 @@ var app = express();
 var config = require('./config/dev');
 var morgan = require('morgan');
 var mysql = require('mysql');
-var users = require('./controllers/users'); 
 var bodyParser = require('body-parser');
+var users = require('./controllers/users'); 
 var login = require('./controllers/login');
+var requests = require('./controllers/requests');
 var db = require('./db/db');
 	//use morgan to log at command line
 	app.use(morgan('combined')); //'combined' outputs the Apache style LOGs
@@ -27,7 +28,10 @@ var db = require('./db/db');
 		.post(login.loginUser);
 
 	app.route('/users/:id/wallet')
-		.get(users.getWalletByUserId);	
+		.get(users.getWalletByUserId);
+
+	app.route('/requests')
+		.post(requests.addRequest);		
 
 
 	app.listen(8080);

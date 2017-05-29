@@ -39,7 +39,7 @@ CREATE TABLE requests (
 	status VARCHAR(20) NOT NULL,
 	message VARCHAR(150),
 	operation VARCHAR(20) NOT NULL,
-	quantity DOUBLE(10,2) NOT NULL,
+	quantity DOUBLE(100,2) NOT NULL,
 	id_admin_request int
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
