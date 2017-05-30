@@ -35,7 +35,10 @@ var db = require('./db/db');
 		.get(requests.getRequests);
 
 	app.route('/requests/user/:id_requester')
-		.get(requests.getRequestByIdUser);	
+		.get(requests.getRequestByIdUser);
+
+	app.route('/requests/admin/:id_admin_request')
+		.put(requests.processRequest);		
 
 	app.route('/transactions/user/:id_user')
 		.get(transactions.getTransactionsByIdUser);			
