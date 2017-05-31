@@ -113,7 +113,7 @@ var Request = module.exports = {
 								console.log('Update successfully');
 
 								var socket = client.connect('http://localhost:8080', { reconnect: true });
-								socket.emit('message', amount);
+								socket.emit('message', {money: amount, id_user: req.id_requester});
 								res.send({'status': 'saved'});
 							}		
 						}

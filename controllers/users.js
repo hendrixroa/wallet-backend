@@ -7,7 +7,7 @@ module.exports = {
 				console.log(err);
 				connection.end();
 			}else{
-				 res.json({"wallet": rows.length > 0 ? rows : null});
+				 res.json({"wallet": rows.length > 0 ? rows[0] : null});
 			}
 		});
 	}
