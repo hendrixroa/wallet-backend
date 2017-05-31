@@ -4,6 +4,10 @@ var config = require('./config/dev');
 var morgan = require('morgan');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
+var server = app.listen(8080);
+var io = require("socket.io").listen(server);
+var socket = require('./socket/socket');
+
 var users = require('./controllers/users'); 
 var login = require('./controllers/login');
 var requests = require('./controllers/requests');
@@ -24,6 +28,8 @@ var db = require('./db/db');
 		next();
 	});
 
+	socket.start(io);	
+
 	app.route('/login')
 		.post(login.loginUser);
 
@@ -43,7 +49,9 @@ var db = require('./db/db');
 	app.route('/transactions/user/:id_user')
 		.get(transactions.getTransactionsByIdUser);			
 
-	app.listen(8080);
 	console.log("Listening on port " + 8080);
 
-	module.exports = app; 
+	module.exports = {
+		app: app,
+		io: io
+	}; 

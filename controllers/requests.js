@@ -1,4 +1,6 @@
 var connection = require('../db/db');
+var app = require('../server');
+var client = require('socket.io-client');
 
 var Request = module.exports = {
 	addRequest: function(req, res){
@@ -98,19 +100,20 @@ var Request = module.exports = {
 					console.log(err);
 					connection.end();
 				}else{
+					var amount = operation == 'sum' ? Request.sumValues(result_money[0].money ,req.quantity) :
+								Request.substractValues(result_money[0].money ,req.quantity);
 					connection.query(
 						'UPDATE wallet SET money = ? WHERE id_user = ?', 
-						[
-							operation == 'sum' ? Request.sumValues(result_money[0].money ,req.quantity) :
-								Request.substractValues(result_money[0].money ,req.quantity),
-							req.id_requester
-						],
+						[ amount, req.id_requester],
 						function(err, result_update, fields){
 							if(err != null){
 								console.log(err);
 								connection.end();
 							}else{
 								console.log('Update successfully');
+
+								var socket = client.connect('http://localhost:8080', { reconnect: true });
+								socket.emit('message', amount);
 								res.send({'status': 'saved'});
 							}		
 						}
