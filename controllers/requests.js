@@ -36,7 +36,7 @@ var Request = module.exports = {
 	},
 	getRequestByIdUser: function(req, res){
 		connection.query(
-			'SELECT * FROM requests WHERE id_requester = ?', 
+			'SELECT * FROM requests WHERE id_requester = ? ORDER BY id DESC', 
 			[req.params.id_requester],
 			function(err, resul_req, fields){
 				if(err != null){
@@ -49,13 +49,14 @@ var Request = module.exports = {
 	},
 	getRequests: function(req, res){
 		connection.query(
-			'SELECT * FROM requests', 
+			'SELECT requests.id, requests.date, requests.operation, requests.quantity, users.username, users.id AS id_requester FROM requests INNER JOIN users ON requests.id_requester = users.id WHERE status = ? ORDER BY id DESC',
+			['progress'], 
 			function(err, resul_req, fields){
 				if(err != null){
 					console.log(err);
 					connection.end();
 				}else{
-					res.json({'requests':  resul_req.length > 0 ? resul_req : null }); 	
+					res.json({'requests':  resul_req.length > 0 ? resul_req : null}); 	
 				}		
 		});
 	},
@@ -69,7 +70,7 @@ var Request = module.exports = {
 					connection.end();
 				}else{
 					console.log('Update requests successfully');
-					if(req.body.state == 'rejected'){
+					if(req.body.state == 'rejected'){						
 						res.send({'request': 'rejected'});
 					}
 				}		

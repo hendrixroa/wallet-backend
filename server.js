@@ -44,10 +44,13 @@ var db = require('./db/db');
 		.get(requests.getRequestByIdUser);
 
 	app.route('/requests/admin/:id_admin_request')
-		.put(requests.processRequest);		
+		.post(requests.processRequest);		
 
 	app.route('/transactions/user/:id_user')
-		.get(transactions.getTransactionsByIdUser);			
+		.get(transactions.getTransactionsByIdUser);
+
+	app.route('/transactions/user/:id_user/retire')
+		.get(transactions.getRetireByIdUser);				
 
 	console.log("Listening on port " + 8080);
 
