@@ -6,21 +6,17 @@
  * @apiParam {String} username Username or nickname for access of website.
  * @apiParam {String} password Field for secure and unique access users
  * 
- * @apiSuccess {String} firstname Firstname of the User.
- * @apiSuccess {String} lastname  Lastname of the User.
- *
+ * @apiSuccess {Integer} id Id unique of user.
+ * @apiSuccess {String} username nickname of user.
+ * @apiSuccess {Integer} is_admin 0 for not admin & 1 for admin.
+ * 
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *     user:
- * 	   {
- * 	   "id": 1,
- * 	   "username": "johndoe",
- *     "is_admin": 0 // 0 for not admin and 1 for admin
- * 	   } 
+ *     "user": { "id": 1, "username": "johndoe", "is_admin": 0 } 
  *     }
  *
- * @apiError The user not exist.
+ * @apiError ObjectUserEmpty user not exist, return a object empty.
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 200 Not Found

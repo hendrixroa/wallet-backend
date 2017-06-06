@@ -1,3 +1,99 @@
+/**
+ * @api {get} /requests get all requests with status 'progress' of users
+ * @apiName getAllRequests
+ * @apiGroup Requests
+ * 
+ * @apiSuccess {Integer} id Id unique of requests.
+ * @apiSuccess {Date} date date of requests.
+ * @apiSuccess {String} operation can be payment or retirement.
+ * @apiSuccess {Double} quantity quantity of money for the requests.
+ * @apiSuccess {String} username username of user requests.
+ * @apiSuccess {Integer} id_requester id of user request.
+ * 
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *     "requests": [{ "id": 1, "date": "2012-12-12", "operation": "retirement", "quantity": 12232, "username": "jonhDoe", "id_requester": 1 }]
+ *     }
+ *
+ * @apiError ObjectRequestEmpty wallet for user empty, return a object empty.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 200 Not Found
+ *     {
+ *       "requests": null
+ *     }
+ */
+
+/**
+ * @api {post} /requests add request from user and data for type x-www-form-urlencoded
+ * @apiName AddRequests
+ * @apiGroup Requests
+ * 
+ * @apiParamExample {x-www-form-urlencoded} Body x-www-form-urlencoded example:
+ * 		{
+ * 			"id_requester": 1,
+ * 			"operation": "retirement",
+ * 			"date": "2012-12-12",
+ * 			"quantity": 121221,
+ * 		}
+ * 
+ * @apiSuccess {String} status state of operation if status is 'progress' it mean that admin his not approved, else the admin approved or the operation is payment.
+ * 
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *     "status": "progress" 
+ *     }
+ */
+
+/**
+ * @api {get} /requests/user/:id_requester Get requests by id user
+ * @apiName GetRequestsByUser
+ * @apiGroup Requests
+ * 
+ * @apiParam {Integer} id_requester id of user
+ *  
+ * @apiSuccess {Integer} id Id unique of requests.
+ * @apiSuccess {Date} date date of requests.
+ * @apiSuccess {Integer} id_requester id of user transaction (the same requester)
+ * @apiSuccess {String} status status of requests in 'progress', 'rejected'  or 'accepted'
+ * @apiSuccess {String} operation can be payment or retirement.
+ * @apiSuccess {Double} quantity quantity of money for the requests.
+ * @apiSuccess {Integer} id_admin_request id of user admin that approved o reject request.
+ * @apiSuccess {String} message can be null if request is not reject else contain a message from admin to user
+ * 
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *     "requests": [{ "id": 1, "date": "2012-12-12", "id_requester": 1, "status": "rejected", "operation": "retirement", "quantity": 12232, "id_admin_request": 3, "message": "The quantity is soo much" }]
+ *     }
+ *
+ * @apiError ObjectRequestEmpty wallet for user empty, return a object empty.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 200 Not Found
+ *     {
+ *       "requests": null
+ *     }
+ */
+
+/**
+ * @api {post} /requests/admin/:id_admin_request An admin can Reject or accept retirement for requests of users 
+ * @apiName AcceptOrRejectRequests
+ * @apiGroup Requests
+ * 
+ * @apiParam {Integer} id_admin_request id admin of user
+ *  
+ * @apiSuccess {Object} status can be saved if request is not reject else is rejected
+ * 
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *     "request": "saved" 
+ *     }
+ */
+
 var connection = require('../db/db');
 var app = require('../server');
 var client = require('socket.io-client');
