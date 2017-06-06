@@ -1,18 +1,18 @@
 var express = require('express');
 var app = express();
-var config = require('./config/dev');
+var config = require('./app/config/dev');
 var morgan = require('morgan');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var server = app.listen(8080);
 var io = require("socket.io").listen(server);
-var socket = require('./socket/socket');
+var socket = require('./app/socket/socket');
 
-var users = require('./controllers/users'); 
-var login = require('./controllers/login');
-var requests = require('./controllers/requests');
-var transactions = require('./controllers/transactions');
-var db = require('./db/db');
+var users = require('./app/controllers/users'); 
+var login = require('./app/controllers/login');
+var requests = require('./app/controllers/requests');
+var transactions = require('./app/controllers/transactions');
+var db = require('./app/db/db');
 	//use morgan to log at command line
 	app.use(morgan('combined')); //'combined' outputs the Apache style LOGs
 

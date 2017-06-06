@@ -1,4 +1,3 @@
-/*Module for config data*/
 
 module.exports = {
 	database: {

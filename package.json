@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --timeout 10000",
     "start": "nodemon server.js",
-    "config:db": "mysql -u root -p  < db/schemaDb.sql"
+    "config:db": "mysql -u root -p  < db/schemaDb.sql",
+    "generate-docs": "node_modules/.bin/apidoc -i app/ -o docs/"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/hendrixroa/wallet-backend#readme",
   "devDependencies": {
+    "apidoc": "^0.17.6",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "morgan": "^1.8.2",
