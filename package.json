@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --timeout 10000",
     "start": "nodemon server.js",
-    "config:db": "mysql -u root -p  < db/schemaDb.sql",
+    "config:db": "mysql -u root -p  < app/db/schemaDb.sql",
     "docs": "node_modules/.bin/apidoc -i app/ -o docs/"
   },
   "repository": {

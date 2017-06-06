@@ -95,7 +95,7 @@
  */
 
 var connection = require('../db/db');
-var app = require('../server');
+var app = require('../../server');
 var client = require('socket.io-client');
 
 var Request = module.exports = {
