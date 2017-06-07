@@ -16,7 +16,7 @@ CREATE TABLE users (
 CREATE TABLE wallet (
 	id int NOT NULL,
 	id_user int NOT NULL,
-	money DOUBLE(10,2) NOT NULL
+	money DOUBLE NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # The field type on table transactions can be retirement, payment
@@ -26,7 +26,7 @@ CREATE TABLE transactions (
 	id_user int NOT NULL,
 	date DATE NOT NULL,
 	type VARCHAR(20) NOT NULL,
-	quantity DOUBLE(10,2) NOT NULL
+	quantity DOUBLE NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # The field status on table requests can be progress, accepted, rejected
@@ -39,7 +39,7 @@ CREATE TABLE requests (
 	status VARCHAR(20) NOT NULL,
 	message VARCHAR(150),
 	operation VARCHAR(20) NOT NULL,
-	quantity DOUBLE(100,2) NOT NULL,
+	quantity DOUBLE NOT NULL,
 	id_admin_request int
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
