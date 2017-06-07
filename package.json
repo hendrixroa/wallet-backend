@@ -7,7 +7,8 @@
     "test": "mocha --timeout 10000",
     "start": "nodemon server.js",
     "config:db": "mysql -u root -p  < app/db/schemaDb.sql",
-    "docs": "node_modules/.bin/apidoc -i app/ -o docs/"
+    "docs": "node_modules/.bin/apidoc -i app/ -o docs/",
+    "full:install": "npm install && npm run config:db && npm run docs && npm start"
   },
   "repository": {
     "type": "git",

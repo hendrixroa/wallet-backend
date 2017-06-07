@@ -26,4 +26,8 @@ The documentation is in the folder `docs` but you if changes a endpoint in this 
 
 **Very more easy**, Only run:
 
-* `npm start` and `rs` for refresh the console when running.
+* `npm start` and `rs` for refresh the console when running. For proposal didactical, this backend running in localhost with the port 8080 so, the route is `http://localhost:8080`
+
+## All in one 
+
+**Run** : `npm run full:install`
