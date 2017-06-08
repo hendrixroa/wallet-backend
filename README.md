@@ -22,6 +22,10 @@ The documentation is in the folder `docs` but you if changes a endpoint in this 
 * `npm run config:db` for create a database and all tables from a file .sql in `app/db/schemaDb.sql`, when you started this command it require a password user root for create database in your mysql engine.
 * `npm run docs` this command generate or rewrite the folder `docs` with a documentation readable better.
 
+## Config Database
+
+The file config is in the folder `app/db/db.js` add your data username, password, host and port of database.
+
 ## How run ?
 
 **Very more easy**, Only run:
