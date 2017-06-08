@@ -167,6 +167,9 @@ var Request = module.exports = {
 				}else{
 					console.log('Update requests successfully');
 					if(req.body.state == 'rejected'){						
+						
+						var socket = client.connect('http://localhost:8080', { reconnect: true });
+						socket.emit('message', {money: null, id_user: req.body.id_requester});						
 						res.send({'request': 'rejected'});
 					}
 				}		
